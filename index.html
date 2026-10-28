@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Veg Recipes by Roopa | Homemade Vegetarian Recipes</title>
+
+    <meta name="description"
+          content="Discover delicious vegetarian recipes, easy cooking instructions, ingredients and tips at Veg Recipes by Roopa.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar">
+        <a href="#" class="logo">
+            🥗 Veg Recipes
+            <span>BY ROOPA</span>
+        </a>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#recipes">Recipes</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">FRESH • HOMEMADE • VEGETARIAN</p>
+
+                <h1>
+                    Everyday Veg Recipes,
+                    <span>Made with Love.</span>
+                </h1>
+
+                <p>
+                    Discover delicious vegetarian recipes with simple
+                    ingredients, easy steps and useful cooking tips.
+                </p>
+
+                <a href="#recipes" class="primary-button">
+                    Explore Recipes →
+                </a>
+            </div>
+
+            <div class="hero-badge">
+                <span>🌿</span>
+                <div>
+                    <strong>100% Vegetarian</strong>
+                    <p>Made for your family</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEARCH SECTION -->
+        <section class="search-section">
+            <div>
+                <h2>Find Your Next Favorite Recipe</h2>
+                <p>What would you love to cook today?</p>
+            </div>
+
+            <label class="search-box">
+                <span>🔍</span>
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search biryani, dosa, paneer..."
+                    aria-label="Search recipes">
+            </label>
+        </section>
+
+        <!-- RECIPE CATEGORIES -->
+        <section class="section" id="categories">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">EXPLORE BY CATEGORY</p>
+                    <h2>What Are You Craving?</h2>
+                </div>
+            </div>
+
+            <div class="category-list">
+                <button class="category active" data-category="all">
+                    All Recipes
+                </button>
+
+                <button class="category" data-category="no-onion-garlic">
+                    No Onion, No Garlic
+                </button>
+
+                <button class="category" data-category="rice">
+                    Rice & Biryani
+                </button>
+
+                <button class="category" data-category="breakfast">
+                    Breakfast
+                </button>
+
+                <button class="category" data-category="curries">
+                    Curries
+                </button>
+
+                <button class="category" data-category="snacks">
+                    Snacks
+                </button>
+
+                <button class="category" data-category="sweets">
+                    Sweets
+                </button>
+                <button class="category" data-category="roopa-special">
+                <span class="category-icon">👩‍🍳</span>
+                   <span>Roopa Special</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- RECIPE CARDS -->
+        <section class="section" id="recipes">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">HANDPICKED FOR YOU</p>
+                    <h2>Popular Vegetarian Recipes</h2>
+                    <p class="muted">
+                        Simple ingredients. Wonderful homemade flavors.
+                    </p>
+                </div>
+
+                <span class="recipe-count" id="recipeCount">
+                    6 recipes
+                </span>
+            </div>
+            <div class="recipe-grid" id="recipeGrid">
+
+                <!-- VEG BIRYANI -->
+                <article class="recipe-card"
+                    data-name="veg biryani vegetable biryani"
+                    data-category="rice"
+                    data-type="with-onion-garlic">
+
+                    <div class="recipe-visual" role="img"
+                         aria-label="Vegetable biryani">🍛</div>
+
+                    <div class="recipe-info">
+                        <span class="recipe-category">RICE & BIRYANI</span>
+                        <h3>Vegetable Biryani</h3>
+                        <p>Aromatic rice cooked with vegetables and spices.</p>
+
+                        <div class="recipe-footer">
+                            <span class="recipe-time">⏱ 40 mins</span>
+                            <button class="view-recipe"
+                                data-recipe="biryani">
+                                View Recipe →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PANEER CURRY -->
+                <article class="recipe-card"
+                    data-name="paneer butter masala paneer curry"
+                    data-category="curries"
+                    data-type="with-onion-garlic">
+
+                    <div class="recipe-visual" role="img"
+                         aria-label="Paneer curry">🍲</div>
+
+                    <div class="recipe-info">
+                        <span class="recipe-category">CURRIES</span>
+                        <h3>Paneer Butter Masala</h3>
+                        <p>Creamy paneer curry with rich Indian spices.</p>
+
+                        <div class="recipe-footer">
+                            <span class="recipe-time">⏱ 30 mins</span>
+                            <button class="view-recipe"
+                                data-recipe="paneer">
+                                View Recipe →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- IDLI -->
+                <article class="recipe-card"
+                    data-name="idli sambar breakfast"
+                    data-category="breakfast"
+                    data-type="no-onion-garlic">
+
+                    <div class="recipe-visual" role="img"
+                         aria-label="Idli and sambar">🥣</div>
+
+                    <div class="recipe-info">
+                        <span class="recipe-category">BREAKFAST</span>
+                        <h3>Idli & Sambar</h3>
+                        <p>Soft steamed idlis served with flavorful sambar.</p>
+
+                        <div class="recipe-footer">
+                            <span class="recipe-time">⏱ 25 mins*</span>
+                            <button class="view-recipe"
+                                data-recipe="idli">
+                                View Recipe →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- POHA -->
+                <article class="recipe-card"
+                    data-name="poha flattened rice breakfast"
+                    data-category="breakfast"
+                    data-type="no-onion-garlic">
+
+                    <div class="recipe-visual" role="img"
+                         aria-label="Poha">🍚</div>
+
+                    <div class="recipe-info">
+                        <span class="recipe-category">BREAKFAST</span>
+                        <h3>Vegetable Poha</h3>
+                        <p>A light and tasty breakfast with flattened rice.</p>
+
+                        <div class="recipe-footer">
+                            <span class="recipe-time">⏱ 20 mins</span>
+                            <button class="view-recipe"
+                                data-recipe="poha">
+                                View Recipe →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- SAMOSA -->
+                <article class="recipe-card"
+                    data-name="vegetable samosa snack"
+                    data-category="snacks"
+                    data-type="no-onion-garlic">
+
+                    <div class="recipe-visual" role="img"
+                         aria-label="Vegetable samosa">🥟</div>
+
+                    <div class="recipe-info">
+                        <span class="recipe-category">SNACKS</span>
+                        <h3>Vegetable Samosa</h3>
+                        <p>Crispy pastry filled with spiced potatoes.</p>
+
+                        <div class="recipe-footer">
+                            <span class="recipe-time">⏱ 45 mins</span>
+                            <button class="view-recipe"
+                                data-recipe="samosa">
+                                View Recipe →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PAYASAM -->
+                <article class="recipe-card"
+                    data-name="vermicelli payasam semiya kheer sweet"
+                    data-category="sweets"
+                    data-type="no-onion-garlic">
+
+                    <div class="recipe-visual" role="img"
+                         aria-label="Vermicelli payasam">🍮</div>
+
+                    <div class="recipe-info">
+                        <span class="recipe-category">SWEETS</span>
+                        <h3>Semiya Payasam</h3>
+                        <p>A traditional sweet made with milk and vermicelli.</p>
+
+                        <div class="recipe-footer">
+                            <span class="recipe-time">⏱ 25 mins</span>
+                            <button class="view-recipe"
+                                data-recipe="payasam">
+                                View Recipe →
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                
+<!-- ROOPA SPECIAL: RAGI BALLS -->
+<article class="recipe-card"
+    data-name="ragi balls ragi mudde finger millet"
+    data-category="roopa-special"
+    data-type="no-onion-garlic">
+
+    <div class="recipe-visual" role="img" aria-label="Ragi balls">🍘</div>
+
+    <div class="recipe-info">
+        <span class="recipe-category">ROOPA SPECIAL</span>
+        <h3>Ragi Balls</h3>
+        <p>Healthy finger millet balls with cumin and fresh moringa leaves.</p>
+
+        <div class="recipe-footer">
+            <span class="recipe-time">⏱ 30 mins + steaming</span>
+            <button class="view-recipe" data-recipe="ragi-balls">
+                View Recipe →
+            </button>
+        </div>
+    </div>
+</article>
+
+<!-- ROOPA SPECIAL: PEANUT CHUTNEY -->
+<article class="recipe-card"
+    data-name="peanut chutney groundnut chutney"
+    data-category="roopa-special"
+    data-type="no-onion-garlic">
+
+    <div class="recipe-visual" role="img" aria-label="Peanut chutney">🥜</div>
+
+    <div class="recipe-info">
+        <span class="recipe-category">ROOPA SPECIAL</span>
+        <h3>Peanut Chutney</h3>
+        <p>Roasted peanuts blended with green chillies, curry leaves and tomato.</p>
+
+        <div class="recipe-footer">
+            <span class="recipe-time">⏱ 15 mins</span>
+            <button class="view-recipe" data-recipe="peanut-chutney">
+                View Recipe →
+            </button>
+        </div>
+    </div>
+</article>
+            </div>
+
+            <p id="emptyMessage" class="empty-message" hidden>
+                No recipes found. Try another search.
+            </p>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="about" id="about">
+            <span>👩‍🍳</span>
+
+            <div>
+                <p class="eyebrow">WELCOME TO MY KITCHEN</p>
+                <h2>Cooking Made Simple with Roopa</h2>
+
+                <p>
+                    Explore vegetarian recipes for everyday meals,
+                    festive occasions and family gatherings. Each recipe
+                    will include ingredients, quantities, preparation
+                    steps, cooking time and practical tips.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RECIPE DETAILS POPUP -->
+    <div class="modal" id="recipeModal" hidden>
+        <div class="modal-content">
+            <button class="close-button" id="closeModal"
+                aria-label="Close recipe details">&times;</button>
+
+            <div id="recipeDetails"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo">
+            🥗 Veg Recipes by Roopa
+        </div>
+
+        <p>Homemade flavors, simple ingredients, happy families.</p>
+        <p>© 2026 Veg Recipes by Roopa</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
