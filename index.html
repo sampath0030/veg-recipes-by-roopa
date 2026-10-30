@@ -372,7 +372,69 @@
         <p>© 2026 Veg Recipes by Roopa</p>
     </footer>
 
-    <script src="script.js"></script>
+<!-- FLOATING AI CHATBOT -->
+<div id="roopa-chatbot">
 
+    <!-- Floating Chat Button -->
+    <button id="chat-toggle" aria-label="Open AI Chef Chat">
+        🥗
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chat-window" class="chat-window" hidden>
+
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="chat-title">
+                <span>🥗</span>
+                <div>
+                    <strong>Roopa's AI Chef</strong>
+                    <small>Ask me anything about veg recipes</small>
+                </div>
+            </div>
+
+            <div class="chat-actions">
+    <button id="chat-minimize" title="Minimize chat"
+        aria-label="Minimize chat">−</button>
+
+    <button id="chat-maximize" title="Maximize chat"
+        aria-label="Maximize chat">⛶</button>
+
+    <button id="chat-close" title="Close chat"
+        aria-label="Close chat">×</button>
+</div>
+        </div>
+
+        <!-- Chat Messages -->
+        <div id="chat-messages" class="chat-messages">
+            <div class="bot-message">
+                👋 Hello! Welcome to Veg Recipes by Roopa.
+
+                <br><br>
+                Tell me what ingredients you have. I'll suggest a
+                delicious vegetarian recipe!
+
+                <br><br>
+                You can chat with me in Telugu or English.
+            </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input-area">
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Ask your recipe question..."
+                autocomplete="off"
+            >
+
+            <button id="chat-send" aria-label="Send message">
+                ➤
+            </button>
+        </div>
+
+    </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

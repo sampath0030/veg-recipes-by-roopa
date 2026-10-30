@@ -716,3 +716,142 @@ document.addEventListener("keydown", (event) => {
 // ========================================
 
 filterRecipes();
+// ========================================
+// ROOPA'S AI CHEF - CHATBOT FUNCTIONALITY
+// ========================================
+
+const chatContainer = document.getElementById("chat-window");
+const chatToggle = document.getElementById("chat-toggle");
+
+chatToggle.addEventListener("click", () => {
+    chatContainer.hidden = false;
+});
+const chatMessages = document.getElementById("chat-messages");
+const chatInput = document.getElementById("chat-input");
+const chatSend = document.getElementById("chat-send");
+
+const chatMinimize = document.getElementById("chat-minimize");
+const chatMaximize = document.getElementById("chat-maximize");
+const chatClose = document.getElementById("chat-close");
+
+// Display chat messages
+function addChatMessage(message, className) {
+    const messageDiv = document.createElement("div");
+
+    messageDiv.className = className;
+    messageDiv.textContent = message;
+
+    chatMessages.appendChild(messageDiv);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Send message to AI backend
+
+async function sendChatMessage() {
+    const message = chatInput.value.trim();
+
+    if (!message) return;
+
+    addChatMessage(message, "user-message");
+
+    chatInput.value = "";
+    chatInput.focus();
+
+    const loadingMessage = document.createElement("div");
+    loadingMessage.className = "bot-message";
+    loadingMessage.textContent = "🥗 Roopa's AI Chef is thinking...";
+    chatMessages.appendChild(loadingMessage);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    try {
+        const response = await fetch("http://localhost:3000/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message })
+        });
+
+        if (!response.ok) {
+            throw new Error("Unable to connect to AI Chef.");
+        }
+
+        loadingMessage.textContent = "";
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        let botReply = "";
+
+        while (true) {
+            const { value, done } = await reader.read();
+
+            if (done) break;
+
+            botReply += decoder.decode(value, { stream: true });
+
+            loadingMessage.textContent = botReply;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        botReply += decoder.decode();
+
+        loadingMessage.textContent = botReply.trim() ||
+            "Sorry, I couldn't understand that. Please try again.";
+
+    } catch (error) {
+        loadingMessage.remove();
+
+        addChatMessage(
+            "Sorry! I couldn't connect to the AI Chef. Please check whether the AI server is running.",
+            "bot-message"
+        );
+
+        console.error("Chatbot Error:", error);
+    }
+}
+
+// Send button
+chatSend.addEventListener("click", sendChatMessage);
+
+// Enter key
+chatInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        sendChatMessage();
+    }
+});
+    
+// Enter key
+chatInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        sendChatMessage();
+    }
+});
+
+// ========================================
+// CHAT WINDOW CONTROLS
+// ========================================
+
+// Minimize chat window
+chatMinimize.addEventListener("click", () => {
+    chatContainer.classList.remove("maximized");
+    chatContainer.classList.add("minimized");
+});
+
+// Maximize and restore chat window
+chatMaximize.addEventListener("click", () => {
+    if (chatContainer.classList.contains("minimized")) {
+        chatContainer.classList.remove("minimized");
+        return;
+    }
+
+    chatContainer.classList.toggle("maximized");
+});
+
+// Close chat window
+chatClose.addEventListener("click", () => {
+    chatContainer.hidden = true;
+    chatContainer.classList.remove("minimized", "maximized");
+});
