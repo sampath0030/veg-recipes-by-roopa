@@ -766,7 +766,7 @@ async function sendChatMessage() {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     try {
-        const response = await fetch("http://localhost:3000/api/chat", {
+        const response = await fetch("https://veg-recipes-by-roopa.onrender.com/api/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -823,12 +823,6 @@ chatInput.addEventListener("keydown", (event) => {
     }
 });
     
-// Enter key
-chatInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-        sendChatMessage();
-    }
-});
 
 // ========================================
 // CHAT WINDOW CONTROLS
