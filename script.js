@@ -787,6 +787,16 @@ function formatAIResponse(text) {
             return;
         }
 
+        const sectionHeading = safeLine
+            .replace(/\*\*/g, "")
+            .match(/^(ingredients?|instructions?|method|steps?|preparation|tips?|serving suggestions?):?$/i);
+
+        if (sectionHeading) {
+            closeList();
+            html += `<h3>${escapeHTML(sectionHeading[1])}</h3>`;
+            return;
+        }
+
         // Bold text
         safeLine = safeLine.replace(
             /\*\*(.*?)\*\*/g,
@@ -802,26 +812,28 @@ function formatAIResponse(text) {
         }
 
         // Bullet points
-        if (/^[-*]\s/.test(safeLine)) {
+        if (/^[•*-]\s/.test(safeLine)) {
             if (listType !== "ul") {
                 closeList();
                 html += "<ul>";
                 listType = "ul";
             }
 
-            html += `<li>${safeLine.replace(/^[-*]\s/, "")}</li>`;
+            html += `<li>${safeLine.replace(/^[•*-]\s/, "")}</li>`;
             return;
         }
 
         // Numbered steps
-        if (/^\d+[.)]\s/.test(safeLine)) {
+        const numberedStep = safeLine.match(/^(?:(?:step)\s+)?\d+[.):]\s+(.+)$/i);
+
+        if (numberedStep) {
             if (listType !== "ol") {
                 closeList();
                 html += "<ol>";
                 listType = "ol";
             }
 
-            html += `<li>${safeLine.replace(/^\d+[.)]\s/, "")}</li>`;
+            html += `<li>${numberedStep[1]}</li>`;
             return;
         }
 

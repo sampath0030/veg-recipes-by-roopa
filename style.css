@@ -754,7 +754,7 @@ footer p {
     border-radius: 4px 15px 15px 15px;
     font-size: 13px;
     line-height: 1.7;
-    white-space: pre-wrap;
+    overflow-wrap: anywhere;
     margin-bottom: 15px;
 }
 
@@ -1081,4 +1081,45 @@ footer p {
         min-height: 54px;
         padding: 0 17px;
     }
+}
+
+.bot-message h3 {
+    margin: 0.9rem 0 0.35rem;
+    color: #17613a;
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+.bot-message h3:first-child {
+    margin-top: 0;
+}
+
+.bot-message p {
+    margin: 0 0 0.65rem;
+}
+
+.bot-message p:last-child,
+.bot-message ul:last-child,
+.bot-message ol:last-child {
+    margin-bottom: 0;
+}
+
+.bot-message ul,
+.bot-message ol {
+    margin: 0.25rem 0 0.8rem;
+    padding-left: 1.35rem;
+}
+
+.bot-message li {
+    margin-bottom: 0.35rem;
+    padding-left: 0.15rem;
+}
+
+.bot-message li:last-child {
+    margin-bottom: 0;
+}
+
+.bot-message strong {
+    color: #17613a;
+    font-weight: 700;
 }
