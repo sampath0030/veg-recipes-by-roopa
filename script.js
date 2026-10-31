@@ -725,6 +725,9 @@ const chatToggle = document.getElementById("chat-toggle");
 
 chatToggle.addEventListener("click", () => {
     chatContainer.hidden = false;
+    chatContainer.classList.remove("minimized", "maximized");
+    chatToggle.setAttribute("aria-expanded", "true");
+    chatInput.focus();
 });
 const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chat-input");
@@ -947,4 +950,6 @@ chatMaximize.addEventListener("click", () => {
 chatClose.addEventListener("click", () => {
     chatContainer.hidden = true;
     chatContainer.classList.remove("minimized", "maximized");
+    chatToggle.setAttribute("aria-expanded", "false");
+    chatToggle.focus();
 });

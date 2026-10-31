@@ -515,7 +515,7 @@ footer p {
     }
 
     .recipe-visual {
-        min-height: 190px;
+        min-height: 0;
     }
 
     .about {
@@ -960,8 +960,12 @@ footer p {
     }
 
     .chat-window {
-        width: calc(100vw - 24px);
-        height: 70vh;
+        right: 12px;
+        bottom: 76px;
+        width: min(380px, calc(100vw - 48px));
+        height: min(70vh, 550px);
+        max-height: calc(100vh - 100px);
+        max-height: calc(100dvh - 100px);
     }
 }
 /* =================================
@@ -1003,4 +1007,78 @@ footer p {
 
 .chat-actions button:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+
+.recipe-visual {
+    position: relative;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+.recipe-visual img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-attributions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 12px;
+    margin-top: 12px;
+    color: #c5d1c7;
+    font-size: 11px;
+}
+
+.photo-attributions a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.photo-attributions a:hover,
+.photo-attributions a:focus-visible {
+    color: #ffffff;
+}
+
+#chat-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: auto;
+    min-height: 58px;
+    padding: 0 20px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 700;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#chat-toggle:hover {
+    background: #165b35;
+    transform: translateY(-2px);
+}
+
+#chat-toggle:focus-visible {
+    outline: 3px solid #f3c86b;
+    outline-offset: 3px;
+}
+
+.chat-toggle-icon {
+    font-size: 25px;
+    line-height: 1;
+}
+
+@media (max-width: 480px) {
+    #chat-toggle {
+        min-height: 54px;
+        padding: 0 17px;
+    }
 }
