@@ -2,6 +2,18 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
+// Request Logging
+app.use((req, res, next) => {
+    console.log(
+        "Incoming Request:",
+        req.method,
+        req.url,
+        "Origin:",
+        req.headers.origin
+    );
+
+    next();
+});
 
 const PORT = process.env.PORT || 3000;
 
