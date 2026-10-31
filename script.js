@@ -735,6 +735,103 @@ const chatMaximize = document.getElementById("chat-maximize");
 const chatClose = document.getElementById("chat-close");
 
 // Display chat messages
+// function addChatMessage(message, className) {
+//     const messageDiv = document.createElement("div");
+
+//     messageDiv.className = className;
+//     messageDiv.textContent = message;
+
+//     chatMessages.appendChild(messageDiv);
+
+//     chatMessages.scrollTop = chatMessages.scrollHeight;
+// }
+
+// ========================================
+// SAFE MARKDOWN FORMATTING FOR AI RESPONSES
+// ========================================
+
+function escapeHTML(text) {
+    return text.replace(/[&<>"']/g, (char) => {
+        const entities = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        };
+
+        return entities[char];
+    });
+}
+
+function formatAIResponse(text) {
+    const lines = text.split(/\r?\n/);
+    let html = "";
+    let listType = null;
+
+    function closeList() {
+        if (listType) {
+            html += `</${listType}>`;
+            listType = null;
+        }
+    }
+
+    lines.forEach((line) => {
+        let safeLine = escapeHTML(line.trim());
+
+        if (!safeLine) {
+            closeList();
+            return;
+        }
+
+        // Bold text
+        safeLine = safeLine.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+        );
+
+        // Headings
+        if (/^#{1,3}\s/.test(safeLine)) {
+            closeList();
+            safeLine = safeLine.replace(/^#{1,3}\s/, "");
+            html += `<h3>${safeLine}</h3>`;
+            return;
+        }
+
+        // Bullet points
+        if (/^[-*]\s/.test(safeLine)) {
+            if (listType !== "ul") {
+                closeList();
+                html += "<ul>";
+                listType = "ul";
+            }
+
+            html += `<li>${safeLine.replace(/^[-*]\s/, "")}</li>`;
+            return;
+        }
+
+        // Numbered steps
+        if (/^\d+[.)]\s/.test(safeLine)) {
+            if (listType !== "ol") {
+                closeList();
+                html += "<ol>";
+                listType = "ol";
+            }
+
+            html += `<li>${safeLine.replace(/^\d+[.)]\s/, "")}</li>`;
+            return;
+        }
+
+        closeList();
+        html += `<p>${safeLine}</p>`;
+    });
+
+    closeList();
+
+    return html;
+}
+
+// Display chat messages
 function addChatMessage(message, className) {
     const messageDiv = document.createElement("div");
 
@@ -745,6 +842,7 @@ function addChatMessage(message, className) {
 
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
 
 // Send message to AI backend
 
@@ -792,14 +890,15 @@ async function sendChatMessage() {
 
             botReply += decoder.decode(value, { stream: true });
 
-            loadingMessage.textContent = botReply;
+            loadingMessage.innerHTML = formatAIResponse(botReply);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         botReply += decoder.decode();
 
-        loadingMessage.textContent = botReply.trim() ||
-            "Sorry, I couldn't understand that. Please try again.";
+        loadingMessage.innerHTML = botReply.trim()
+            ? formatAIResponse(botReply.trim())
+            : "Sorry, I couldn't understand that. Please try again.";
 
     } catch (error) {
         loadingMessage.remove();
